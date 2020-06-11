@@ -68,12 +68,6 @@ const STORE = [
 let currentQuestion = 0;
 let correctAnswers = 0;
 
-
-function initializeApp() {
-    startQuiz();
-    gradeAnswer();
-}
-
 function gradeAnswer() {
     $("#questionContainer").on("submit", "#questionForm", function(event) {
         event.preventDefault();
@@ -196,7 +190,10 @@ function showCorrect() {
     $(".questionResult").show();
 }
 
-
+function initializeApp() {
+    startQuiz();
+    gradeAnswer();
+}
 
 
 
