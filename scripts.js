@@ -159,15 +159,16 @@ function updateScore(currentQuestion, correctAnswers) {
 
 }
 
-function renderIndividualAnswer(answer) {
+function renderIndividualAnswer(answer, index) {
+    console.log(index);
     return `<li>
-        <input type="radio" name="answer" value="${answer}" />
-        <label for="answer">${answer}</label>
+        <input type="radio" id="answer-${index}" name="answer" value="${answer}" />
+        <label for="answer-${index}">${answer}</label>
     </li>`;
 }
 
 function renderAnswers(question) {
-    return question.answers.map(currentAnswer => renderIndividualAnswer(currentAnswer)).join("");
+    return question.answers.map((currentAnswer, i) => renderIndividualAnswer(currentAnswer, i)).join("");
 }
 
 function renderQuestion(question) {
