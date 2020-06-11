@@ -74,9 +74,6 @@ function gradeAnswer() {
 
         const userChoice = $(event.currentTarget).find("input[type=radio]:checked").val();
 
-        console.log('test', userChoice, currentQuestion, correctAnswers);
-
-
         if (currentQuestion < STORE.length) {
             
             const questionObject = STORE[currentQuestion];
@@ -106,8 +103,6 @@ function gradeAnswer() {
         }
 
         if (currentQuestion === STORE.length) {
-            console.log('RESTART');
-
             $("#quizBegin").show();
         }
     });
@@ -115,7 +110,6 @@ function gradeAnswer() {
 
 function startQuiz() {
     $(".quizContainer").hide();
-    console.log("startQuiz");
     $('#mainApp').on('click', '#quizBegin', function(event) {
         event.preventDefault();
 
@@ -143,7 +137,6 @@ function startQuiz() {
 }
 
 function updateScore(currentQuestion, correctAnswers) {
-    console.log('updateScore', currentQuestion);
     const currentCorrect = correctAnswers;
     $('#questionIndex').text(currentQuestion +1);
 
@@ -154,7 +147,6 @@ function updateScore(currentQuestion, correctAnswers) {
 }
 
 function renderIndividualAnswer(answer, index) {
-    console.log(index);
     return `<li>
         <input type="radio" id="answer-${index}" name="answer" value="${answer}" />
         <label for="answer-${index}">${answer}</label>
@@ -179,8 +171,6 @@ function renderQuestion(question) {
 }
 
 function showCorrect() {
-    console.log("Show Correct");
-
     let questionObject = STORE[currentQuestion];
     let currentCorrectAnswer = questionObject.correctAnswer;
 
