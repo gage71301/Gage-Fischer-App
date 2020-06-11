@@ -148,7 +148,7 @@ function updateScore(currentQuestion, correctAnswers) {
 
 function renderIndividualAnswer(answer, index) {
     return `<li>
-        <input type="radio" id="answer-${index}" name="answer" value="${answer}" />
+        <input type="radio" id="answer-${index}" name="answer" value="${answer}" required />
         <label for="answer-${index}">${answer}</label>
     </li>`;
 }
