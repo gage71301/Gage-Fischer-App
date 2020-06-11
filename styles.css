@@ -36,9 +36,9 @@ li {
     border-radius: 5px;
     padding: 1px;
     background-color: whitesmoke;
-    margin-left: 40%;
-    margin-right: 40%;
-    margin-bottom: 0%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 200px;
 }
 
 .startQuizButton {
