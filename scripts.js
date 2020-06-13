@@ -91,7 +91,7 @@ function gradeAnswer() {
                 $(".correctAnswerFB").html(correctFeedBack).addClass("greenbox").show();      
 
             } else {
-                updatescore(currentQuestion);
+                updateScore(currentQuestion);
                 showCorrect();
             }
             currentQuestion++;
