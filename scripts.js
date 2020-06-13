@@ -94,8 +94,8 @@ function gradeAnswer() {
                 
                 showCorrect();
             }
-
             currentQuestion++;
+
             const question = STORE[currentQuestion];
             if (question) {
                 renderQuestion(question);    
