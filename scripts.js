@@ -67,12 +67,16 @@ const STORE = [
 
 let currentQuestion = 0;
 let correctAnswers = 0;
+let answerCounter = 1;
 
 function gradeAnswer() {
     $("#questionContainer").on("submit", "#questionForm", function(event) {
         event.preventDefault();
 
         const userChoice = $(event.currentTarget).find("input[type=radio]:checked").val();
+
+        console.log('test', userChoice, currentQuestion, correctAnswers);
+
 
         if (currentQuestion < STORE.length) {
             
@@ -84,18 +88,21 @@ function gradeAnswer() {
                 let correctFeedBack = `<h1>Good Job!</h1> 
                                 <p>Answer: ${questionObject.correctAnswer}</p>`
                 correctAnswers++;
-                updateScore(currentQuestion, correctAnswers);
+                updateScore(currentQuestion, correctAnswers, answerCounter);
 
 
                 $(".questionResult").hide();
                 $(".correctAnswerFB").html(correctFeedBack).addClass("greenbox").show();      
 
             } else {
-                updateScore(currentQuestion);
+                
                 showCorrect();
+                updateScore(currentQuestion, correctAnswers, answerCounter);
+                
             }
             currentQuestion++;
-
+            answerCounter++;
+            updateScore(answerCounter);
             const question = STORE[currentQuestion];
             if (question) {
                 renderQuestion(question);    
@@ -103,6 +110,10 @@ function gradeAnswer() {
         }
 
         if (currentQuestion === STORE.length) {
+            console.log('RESTART');
+            $("#quizScore").hide();
+            $("#finalScore").text(correctAnswers);
+            $(".endCorrect").show();
             $("#quizBegin").show();
         }
     });
@@ -110,6 +121,7 @@ function gradeAnswer() {
 
 function startQuiz() {
     $(".quizContainer").hide();
+    console.log("startQuiz");
     $('#mainApp').on('click', '#quizBegin', function(event) {
         event.preventDefault();
 
@@ -117,9 +129,13 @@ function startQuiz() {
 
         correctAnswers = 0;
 
+        answerCounter = 0;
+
         const question = STORE[currentQuestion];
 
         renderQuestion(question);
+
+        $(".endCorrect").hide();
 
         $(".questionResult").hide();
 
@@ -137,8 +153,11 @@ function startQuiz() {
 }
 
 function updateScore(currentQuestion, correctAnswers) {
+
+    console.log('updateScore', currentQuestion);
+
     const currentCorrect = correctAnswers;
-    $('#questionIndex').text(currentQuestion +1);
+    $('#questionIndex').text(answerCounter);
 
     $('.questionTotal').text(STORE.length);
 
@@ -147,6 +166,7 @@ function updateScore(currentQuestion, correctAnswers) {
 }
 
 function renderIndividualAnswer(answer, index) {
+    console.log(index);
     return `<li>
         <input type="radio" id="answer-${index}" name="answer" value="${answer}" required />
         <label for="answer-${index}">${answer}</label>
@@ -171,6 +191,8 @@ function renderQuestion(question) {
 }
 
 function showCorrect() {
+    console.log("Show Correct");
+
     let questionObject = STORE[currentQuestion];
     let currentCorrectAnswer = questionObject.correctAnswer;
 
@@ -180,11 +202,12 @@ function showCorrect() {
     $(".questionResult").show();
 }
 
+
+
+
+
+
 function initializeApp() {
     startQuiz();
     gradeAnswer();
 }
-
-
-
-
