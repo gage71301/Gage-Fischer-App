@@ -129,7 +129,7 @@ function startQuiz() {
 
         correctAnswers = 0;
 
-        answerCounter = 0;
+        answerCounter = 1;
 
         const question = STORE[currentQuestion];
 
