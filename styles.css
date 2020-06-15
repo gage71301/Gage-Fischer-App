@@ -31,7 +31,7 @@ li {
     text-align: left;
 }
 
-#headerLabel {
+.headerLabel {
     border: 1px solid black;
     border-radius: 5px;
     padding: 1px;
